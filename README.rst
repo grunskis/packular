@@ -109,14 +109,21 @@ Sample config file::
 
 Command line options::
 
-    usage: packular [-h] [-S [KEY=VALUE [KEY=VALUE ...]]] [CONFIG_FILE]
+    usage: packular.py [-h] [-S [KEY=VALUE [KEY=VALUE ...]]] [-T TARGET_NAME]
+                       [CONFIG_FILE]
+
+    Packular reads lists of required JavaScript, CSS, and partial HTML files, and
+    downloads/combines/references them in index.html files for use in development
+    and production.
 
     positional arguments:
       CONFIG_FILE           Packular configuration file (default packular.conf)
 
     optional arguments:
-          -S [KEY=VALUE [KEY=VALUE ...]]
-                            Overwrite config file variables
+      -h, --help            show this help message and exit
+      -S [KEY=VALUE [KEY=VALUE ...]]
+                            Overwrite config file variables, e.g. version=2.0
+      -T TARGET_NAME        Build only specified target, e.g. sandbox
 
 
 Example::

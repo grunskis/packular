@@ -100,6 +100,9 @@ def parse_options():
     opt.add_argument('-S', metavar="KEY=VALUE", type=str, nargs='*',
             help = "Overwrite config file variables, e.g. version=2.0")
 
+    opt.add_argument('-T', metavar="TARGET_NAME", type=str,
+                     help="Build only specified target, e.g. sandbox")
+
     return opt.parse_args()
 
 
@@ -159,7 +162,11 @@ def configure():
     opts = parse_options()
     defaults = dict(v.split('=') for v in opts.S or [])
     with open(opts.config_file) as config:
-        return read_config(config, defaults)
+        targets = read_config(config, defaults)
+    if opts.T:
+        return {k: targets[k] for k in targets if k == opts.T}
+    else:
+        return targets
 
 
 def remote_url(url):
